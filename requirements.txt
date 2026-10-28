@@ -1,0 +1,39 @@
+## Software Requirements
+
+### Python
+
+- Python 3.12.0
+- NumPy 2.4.6
+- pandas 3.0.3
+- SciPy 1.17.1
+- scikit-learn 1.6.1
+- EconML 0.16.0
+- SHAP 0.48.0
+- Matplotlib 3.11.0
+
+### R
+
+- R 4.5.1
+- `bcf` 2.0.2
+- `ranger` 0.18.0
+- `ggplot2` 4.0.3
+
+## Outputs
+
+The experiments generate the following output files.
+
+### Causal Forest
+
+- `causal_forest_results.csv`
+- `causal_forest_summary.csv`
+- `confounding_strength_sweep.csv`
+- `confounding_strength_summary.csv`
+
+### Bayesian Causal Forest
+
+- `bcf_estimation_results.csv`
+- `bcf_estimation_summary_robust.csv`
+- `bcf_explanation_results.csv`
+- `bcf_explanation_summary.csv`
+
+**Note:** The Python notebook (`causal_forest.ipynb`) should be executed before the R script (`bcf.R`), as it performs data preparation and generates the semi-synthetic benchmark datasets required for the Bayesian Causal Forest experiments.
