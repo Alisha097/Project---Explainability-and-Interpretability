@@ -1,9 +1,9 @@
 # Evaluating and Validating Causal Treatment Effect Estimation Methods
-How can we know whether a machine learning models estimate of a causal effect is actually correct? This project explores how to evaluate and validate causal treatment effect estimators such as those used in personalised medicine, economics and policy design. 
+How can we determine whether a machine learning model's estimated causal effects are reliable? This project investigates how to evaluate causal treatment effect estimators used in personalised medicine, economics, and policy design, with a particular focus on whether their explanations accurately identify the factors driving treatment effect heterogeneity.
 
 **MSc Data Science Dissertation | 2025–2026**
 
-# Explainability and Interpretability - How can we explain heterogeneous treatment effect predictions?
+## Explainability and Interpretability - How can we explain heterogeneous treatment effect predictions?
 
 ## Overview
 This project investigates the reliability of feature attribution methods for explaining heterogeneous treatment effect (HTE) predictions produced by tree-based causal models.
