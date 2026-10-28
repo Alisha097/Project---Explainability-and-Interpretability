@@ -3,20 +3,21 @@ How can we know whether a machine learning models estimate of a causal effect is
 
 **MSc Data Science Dissertation | 2025–2026**
 
-## Explainability and Interpretability - How can we explain heterogeneous treatment effect predictions?
+# Explainability and Interpretability - How can we explain heterogeneous treatment effect predictions?
 
 ## Overview
-This project investigates the reliability of feature attribution methods for explaining heterogeneous treatment effect (HTE) predictions produced by tree-based causal inference models.
+This project investigates the reliability of feature attribution methods for explaining heterogeneous treatment effect (HTE) predictions produced by tree-based causal models.
 
 Although causal machine learning models can estimate conditional average treatment effects (CATE), accurate treatment effect estimation does not necessarily mean that the model correctly identifies the covariates responsible for treatment effect heterogeneity.
 
-This dissertation extends an existing predictive-versus-prognostic attribution benchmarking framework to two tree-based causal estimators: **Causal Forest (CF)** and **Bayesian Causal Forest (BCF)**.
+This dissertation extends the predictive-versus-prognostic attribution benchmarking framework proposed by **[Crabbe et al.](https://arxiv.org/abs/2206.08363)** to two tree-based causal estimators: **Causal Forest (CF)** and **Bayesian Causal Forest (BCF)**.
+**Reference:** [Read the paper on arXiv](https://arxiv.org/abs/2206.08363) · [Download PDF](https://arxiv.org/pdf/2206.08363)
 
 Using a semi-synthetic experimental framework based on real covariates from the Linked Births and Infant Deaths Database (LBIDD), the project evaluates explanation fidelity against known ground truth while independently assessing treatment effect estimation accuracy.
 
 ## Research Question
 
-How reliable are feature attribution methods for explaining heterogeneous treatment effect estimates produced by tree-based causal estimators, and under what conditions does this reliability break down?
+How reliable are feature attribution methods for explaining heterogeneous treatment effect estimates produced by tree-based causal estimators and under what conditions does this reliability break down?
 
 ### Research Objectives
 
@@ -80,8 +81,6 @@ These findings highlight the importance of evaluating explanation fidelity indep
 
 ## Repository Structure
 
-Update this section to reflect the actual files and directories in the repository.
-
 ```text
 dissertation-project/
 ├── data/              # Processed covariates or data access instructions
@@ -107,19 +106,10 @@ The full dissertation and supplementary materials can be linked here when they a
 - **Experimental results:** [Add link]
 - **Supplementary materials:** [Add link]
 
-## Limitations
-
-The benchmark uses constructed potential outcomes and a specified data-generating process. Consequently, the results evaluate explanation reliability under controlled experimental conditions and should not automatically be generalised to every real-world causal inference setting.
-
-The Bayesian Causal Forest explanation experiments also use fewer random seeds than the principal Causal Forest experiments due to computational constraints.
 
 ## References
 
 Please consult the dissertation's reference list for the complete academic sources underpinning the methodology and experimental framework.
 
-## Author
 
-**Alisha**  
-MSc Data Science  
-King's College London
 
