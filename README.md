@@ -1,115 +1,94 @@
-# Evaluating and Validating Causal Treatment Effect Estimation Methods
-How can we determine whether a machine learning model's estimated causal effects are reliable? This project investigates how to evaluate causal treatment effect estimators used in personalised medicine, economics, and policy design, with a particular focus on whether their explanations accurately identify the factors driving treatment effect heterogeneity.
+Evaluating and Validating Causal Treatment Effect Estimation Method (Variant 5)
+MSc Data Science Dissertation
+King's College London
 
-**MSc Data Science Dissertation | 2025–2026**
+Student: Alisha
+Student Number: K25118600
+Supervisor: Dr. Jeroen Berrevoets
 
-## Explainability and Interpretability - How can we explain heterogeneous treatment effect predictions?
-
-## Overview
-This project investigates the reliability of feature attribution methods for explaining heterogeneous treatment effect (HTE) predictions produced by tree-based causal models.
-
-Although causal machine learning models can estimate conditional average treatment effects (CATE), accurate treatment effect estimation does not necessarily mean that the model correctly identifies the covariates responsible for treatment effect heterogeneity.
-
-This dissertation extends the predictive-versus-prognostic attribution benchmarking framework proposed by **[Crabbe et al.](https://arxiv.org/abs/2206.08363)** to two tree-based causal estimators: **Causal Forest (CF)** and **Bayesian Causal Forest (BCF)**.
-**Reference:** [Read the paper on arXiv](https://arxiv.org/abs/2206.08363) · [Download PDF](https://arxiv.org/pdf/2206.08363)
-
-Using a semi-synthetic experimental framework based on real covariates from the Linked Births and Infant Deaths Database (LBIDD), the project evaluates explanation fidelity against known ground truth while independently assessing treatment effect estimation accuracy.
-
-## Research Question
-
-How reliable are feature attribution methods for explaining heterogeneous treatment effect estimates produced by tree-based causal estimators and under what conditions does this reliability break down?
-
-### Research Objectives
-
-- Evaluate whether feature attribution methods recover the true covariates responsible for treatment effect heterogeneity.
-- Investigate how explanation fidelity changes with predictive signal strength.
-- Examine the effects of predictive and prognostic confounding on explanation reliability.
-- Compare explanation methods for Causal Forest and evaluate Bayesian Causal Forest using permutation feature importance.
-- Assess the relationship between explanation fidelity and treatment effect estimation accuracy.
-
-## Methodology
-
-### Dataset and Experimental Framework
-
-The study uses real covariates from LBIDD to construct a semi-synthetic dataset. Treatment assignments and potential outcomes are generated synthetically, allowing the true predictive and prognostic covariates to be identified.
-
-The experimental design varies:
-
-- **Predictive signal strength:** Weak, moderate and strong treatment effect heterogeneity.
-- **Confounding type:** No confounding, prognostic confounding and predictive confounding.
-- **Confounding strength:** Additional experiments investigate the effect of increasing confounding strength.
-
-### Models and Explanation Methods
-
-| Model | Implementation | Explanation method |
-|---|---|---|
-| Causal Forest | Python, EconML | Built-in feature importance and SHAP |
-| Bayesian Causal Forest | R, `bcf` | Permutation feature importance |
-
-### Evaluation Metrics
-
-**Precision in Estimation of Heterogeneous Effect (PEHE)** measures the discrepancy between estimated and true treatment effects.
-
-**Predictive attribution (Attrpred)** measures the proportion of total feature attribution assigned to the known predictive covariates.
-
-**Prognostic attribution (Attrprog)** measures the proportion of total attribution assigned to prognostic covariates that affect outcomes but do not directly determine treatment effect heterogeneity.
-
-Together, these metrics assess estimation accuracy and explanation fidelity as distinct dimensions of model performance.
-
-## Key Findings
-
-The experiments produced the following main findings:
-
-- Explanation fidelity generally improves as predictive signal strength increases.
-- Predictive confounding substantially reduces explanation reliability, even when treatment effect estimation remains relatively stable.
-- Causal Forest's built-in feature importance generally identifies the true predictive covariates more accurately than SHAP across the evaluated experimental settings.
-- Bayesian Causal Forest exhibits similar overall patterns and greater robustness in several confounding settings.
-- Accurate treatment effect estimation does not necessarily imply trustworthy explanations of treatment effect heterogeneity.
-
-These findings highlight the importance of evaluating explanation fidelity independently of conventional estimation accuracy.
-
-## Technologies
-
-- **Python:** Causal Forest implementation and data preprocessing.
-- **EconML:** Causal Forest estimation using `CausalForestDML`.
-- **SHAP:** Post-hoc feature attribution.
-- **R:** Bayesian Causal Forest implementation.
-- **bcf:** Bayesian Causal Forest estimation.
-- **ranger:** Propensity score estimation.
-- **ggplot2:** Statistical visualisation.
-- **CSV:** Sharing the processed covariate matrix between Python and R.
-
-## Repository Structure
-
-```text
-dissertation-project/
-├── data/              # Processed covariates or data access instructions
-├── notebooks/         # Exploratory analysis, if applicable
-├── src/               # Python source code
-├── R/                 # Bayesian Causal Forest implementation, if applicable
-├── results/            # Experimental outputs and figures
-├── requirements.txt   # Python dependencies, if applicable
-└── README.md           # Project documentation
-```
-
-## Reproducibility
-
-The experiments use a shared, cleaned covariate matrix for the Python and R implementations. Experimental runs vary the selected predictive and prognostic covariates, treatment assignments, outcome noise and train-test splits across random seeds.
-
-To reproduce the experiments, consult the project-specific installation instructions, software versions and experimental configuration files.
-
-## Dissertation
-
-The full dissertation and supplementary materials can be linked here when they are available for public distribution.
-
-- **Full dissertation:** [Add link]
-- **Experimental results:** [Add link]
-- **Supplementary materials:** [Add link]
+CONTENTS
 
 
-## References
+This folder contains the source code used to reproduce the experiments
+presented in the report.
 
-Please consult the dissertation's reference list for the complete academic sources underpinning the methodology and experimental framework.
+Files included:
+
+1. causal_forest.ipynb
+   Python implementation of the complete Causal Forest experimental
+   pipeline. The notebook performs:
+   
+   • Loading and preprocessing the cleaned LBIDD covariates
+   • Semi-synthetic data generation following the benchmark framework
+   • Causal Forest model training
+   • SHAP explanation generation
+   • Built-in feature importance extraction
+   • Calculation of Attrpred and Attrprog
+   • Calculation of PEHE and Normalised PEHE
+   • Export of experimental results
+
+2. bcf.R
+   R implementation of the Bayesian Causal Forest (BCF) experiments.
+   This script trains the Bayesian Causal Forest model, estimates
+   heterogeneous treatment effects, computes permutation feature
+   importance and evaluates explanation fidelity and estimation
+   performance.
+
+DATASET
 
 
+The experiments are based on the Linked Births and Infant Deaths
+Database (LBIDD).
+
+The original dataset was obtained from the IBM Causal Inference
+Benchmarking Framework repository:
+
+https://github.com/IBM-HRL-MLHLS/IBM-Causal-Inference-Benchmarking-Framework/tree/master/data/LBIDD
+
+The original LBIDD data were cleaned prior to experimentation by
+removing redundant, near-constant and highly correlated variables, as
+described in Chapter 4 of the report. The resulting cleaned
+dataset was then used to generate the semi-synthetic benchmark datasets
+used throughout the experiments.
+
+SOFTWARE REQUIREMENTS
+
+
+Python:
+• Python 3.12.0
+• NumPy 2.4.6
+• pandas 3.0.3
+• SciPy 1.17.1
+• scikit-learn 1.6.1
+• EconML 0.16.0
+• SHAP 0.48.0
+• Matplotlib 3.11.0
+
+R:
+• R 4.5.1
+• bcf 2.0.2
+• ranger 0.18.0
+• ggplot2 4.0.3
+
+
+OUTPUTS
+
+Running the provided scripts generates the experimental results reported in the report, including:
+
+Causal Forest
+• causal_forest_results.csv
+• causal_forest_summary.csv
+• confounding_strength_sweep.csv
+• confounding_strength_summary.csv
+
+Bayesian Causal Forest
+• bcf_estimation_results.csv
+• bcf_estimation_summary_robust.csv
+• bcf_explanation_results.csv
+• bcf_explanation_summary.csv
+
+NOTE:
+The Python notebook should be executed before the R script, as it
+performs data preparation and generates the semi-synthetic benchmark
+datasets required by the Bayesian Causal Forest experiments
 
